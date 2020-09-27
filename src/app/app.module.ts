@@ -11,6 +11,7 @@ let mainRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home'},
   { path: 'home', component: HomeComponent},
   { path: '404', component: NotFoundComponent},
+  { path: 'ng-template', loadChildren: () => import('./template-outlet/template-outlet.module').then(m => m.TemplateOutletModule) },
   { path: '**', redirectTo: '404'}
 ]
 

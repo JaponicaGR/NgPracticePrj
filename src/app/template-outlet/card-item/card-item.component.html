@@ -1,0 +1,19 @@
+<h1>Our Presentation</h1>
+
+<ng-container [ngSwitch]="mode">
+
+  <ng-container *ngSwitchCase="'card'">
+    <ng-container *ngFor="let item of items">
+      <ng-container *ngTemplateOutlet="cardItemTemplate; context: {$implicit: item, year: 2012}"></ng-container>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'list'">
+    <ul *ngFor="let item of items">
+      <li>
+        <ng-container *ngTemplateOutlet="listItemTemplate; context: {$implicit: item, year: 2015}"></ng-container>
+      </li>
+    </ul>
+  </ng-container>
+
+</ng-container>

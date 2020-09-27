@@ -1,0 +1,12 @@
+<app-card-item [mode]="'card'"
+               [items]="items">
+
+  <div *appCardItem="let itemCTX;">
+    <h3>{{itemCTX.title}}</h3>
+    <p>{{itemCTX.description}}</p>
+  </div>
+
+  <li *appListItem="let itemCTX; let year;">{{itemCTX.title}} : {{itemCTX.description}} - Year: {{year}}</li>
+
+
+</app-card-item>
