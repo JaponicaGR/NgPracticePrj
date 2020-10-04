@@ -4,7 +4,7 @@
   <h2>The Form</h2>
   <hr>
 
-  <form [formGroup]="myForm">
+  <form [formGroup]="myForm" (ngSubmit)="submitForm()">
 
     <div class="form-group">
       <label for="fname">First Name:</label>
@@ -21,7 +21,22 @@
       <label class="form-check-label" for="driver">Is Driver:</label>
     </div>
 
-    <div *ngIf="myForm.get('isdriver').value">hoassas</div>
+    <div formArrayName="driver" *ngFor="let FG of FgArray.controls; let index;">
+      <div class="form-group">
+        <label for="plate">Last Name:</label>
+        <input type="text" class="form-control" id="plate" [formControl]="FG.get('plate')">
+      </div>
+      <div class="form-group">
+        <label for="licenseDate">Last Name:</label>
+        <input type="text" class="form-control" id="licenseDate" [formControl]="FG.get('licenseDate')">
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+    </div>
 
   </form>
 

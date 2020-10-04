@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-reactive',
@@ -8,18 +8,37 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class ReactiveComponent implements OnInit {
 
+
   public myForm: FormGroup;
+  public FgArray = new FormArray([]);
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
 
     this.myForm = this.fb.group({
-      fname: [''],
+      fname: ['', Validators.required],
       lname: [''],
-      isdriver: [true]
+      isdriver: [false],
+      driver: this.FgArray
     })
 
+    this.myForm.get('isdriver').valueChanges.subscribe(isDriver => {
+      if (isDriver) {
+        this.FgArray.push(
+          this.fb.group({
+            plate: ['', Validators.required],
+            licenseDate: ['', Validators.required]
+          })
+        );
+      }
+    })
+
+  }
+
+
+  submitForm() {
+    console.log(this.myForm);
   }
 
 }
